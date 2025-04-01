@@ -3,6 +3,7 @@
   "displayName": "roboformatter",
   "description": "Formatter for a bunch of robots in the EngineeringField",
   "version": "1.0.0",
+  "publisher": "MysticalMindset",
   "repository": "https://github.com/MysticalMindset/roboformatter",
   "engines": {
     "vscode": "^1.98.0"
