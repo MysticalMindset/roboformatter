@@ -1,0 +1,13 @@
+{
+    "scopeName": "source.kukas",
+    "patterns": [
+        {
+            "match": "\\b(PTP|LIN|EXIT|IF|THEN|LOOP|ENDLOOP|DEF|END|DECL)\\b",
+            "name": "keyword.control.kukas"
+        },
+        {
+            "match": ";.*$",
+            "name": "comment.line.kukas"
+        }
+    ]
+}
