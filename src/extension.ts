@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
         provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
             let edits: vscode.TextEdit[] = [];
             let fullText = document.getText();
-            let pythonScript = path.join(context.extensionPath, 'formatter', 'krl_formatter.py');
+            let pythonScript = path.join(context.extensionPath, 'formatter', 'kukas_formatter.py');
 
             try {
                 let formattedText = child_process.execSync(`python "${pythonScript}"`, {
