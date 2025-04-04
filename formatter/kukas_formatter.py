@@ -11,12 +11,7 @@ def format_kukas(content: str) -> str:
         # Remove system metadata lines
         if stripped_line.startswith("&"):
             continue  # Skip these lines
-
-        # Remove FOLD blocks
-        if stripped_line.startswith(";FOLD"):
-            inside_fold_block = True
-            continue  # Skip this line
-
+        
         # Check for start/end of fold block
         if stripped_line.startswith(";FOLD"):
             inside_fold_block = True
