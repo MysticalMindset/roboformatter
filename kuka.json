@@ -1,20 +1,20 @@
 {
     "comments": {
-        "lineComment": ";",    // This tells VS Code that lines starting with `;` are comments in `krl`.
-        "blockComment": ["/*", "*/"]  // Optional: If `krl` uses block comments, you can define them.
+        "lineComment": ";", // This tells VS Code that lines starting with `;` are comments in `krl`.
+        "blockComment": ["/*","*/"] // Optional: If `krl` uses block comments, you can define them.
     },
     "brackets": [
-        ["{", "}"],  // Optional: If `krl` uses curly braces, define them here.
-        ["[", "]"],
-        ["(", ")"]
+        ["{","}"], // Optional: If `krl` uses curly braces, define them here.
+        ["[","]"],
+        ["(",")"]
     ],
     "autoClosingPairs": [
-        {"open": "{", "close": "}"},
-        {"open": "[", "close": "]"},
-        {"open": "(", "close": ")"}
+        {"open": "{","close": "}"},
+        {"open": "[","close": "]"},
+        {"open": "(","close": ")"}
     ],
     "indentation": {
-        "tabSize": 3,  // Teach Pendant uses 3 spaces, so use 3 here for the indentation level.
+        "tabSize": 3, // Teach Pendant uses 3 spaces, so use 3 here for the indentation level.
         "insertSpaces": true
     }
 }
