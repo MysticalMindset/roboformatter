@@ -1,7 +1,7 @@
 import sys
 import re
 
-def format_krl(content: str) -> str:
+def format_kukas(content: str) -> str:
     formatted_lines = []
     inside_fold_block = False
 
@@ -9,7 +9,7 @@ def format_krl(content: str) -> str:
         stripped_line = line.strip()
 
         # Remove system metadata lines
-        if stripped_line.startswith("&ACCESS") or stripped_line.startswith("&REL") or stripped_line.startswith("&PARAM"):
+        if stripped_line.startswith("&"):
             continue  # Skip these lines
 
         # Remove FOLD blocks

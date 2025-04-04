@@ -4,7 +4,7 @@ import * as child_process from 'child_process';
 import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.languages.registerDocumentFormattingEditProvider('krl', {
+    let disposable = vscode.languages.registerDocumentFormattingEditProvider('kukas', {
         provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
             let edits: vscode.TextEdit[] = [];
             let fullText = document.getText();

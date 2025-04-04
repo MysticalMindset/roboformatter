@@ -1,10 +1,10 @@
 {
     "comments": {
-        "lineComment": ";", // This tells VS Code that lines starting with `;` are comments in `krl`.
-        "blockComment": ["/*","*/"] // Optional: If `krl` uses block comments, you can define them.
+        "lineComment": ";", // This tells VS Code that lines starting with `;` are comments in `kukas`.
+        "blockComment": ["/*","*/"] // Optional: If `kukas` uses block comments, you can define them.
     },
     "brackets": [
-        ["{","}"], // Optional: If `krl` uses curly braces, define them here.
+        ["{","}"], // Optional: If `kukas` uses curly braces, define them here.
         ["[","]"],
         ["(",")"]
     ],

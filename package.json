@@ -25,7 +25,7 @@
       {
         "language": "kukas",
         "scopeName": "source.kukas",
-        "path": "./syntaxes/krl.tmLanguage.json"
+        "path": "./syntaxes/kukas.tmLanguage.json"
       }
     ],
     "configurationDefaults": {
