@@ -9,7 +9,11 @@ def format_kukas(content: str) -> str:
         stripped_line = line.strip()
 
         # Remove system metadata lines
-        if stripped_line.startswith("&ACCESS") or stripped_line.startswith("&REL") or stripped_line.startswith("&PARAM"):
+        if stripped_line.startswith("&"):
+            continue
+        
+        # Remove specific INIT macros
+        if stripped_line.upper() in ["BASISTECH INI", "USER INI"]:
             continue
 
         # Handle start of fold block
