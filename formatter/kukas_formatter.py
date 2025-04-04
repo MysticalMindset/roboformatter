@@ -3,7 +3,7 @@ import re
 
 def format_kukas(content: str) -> str:
     formatted_lines = []
-    skip_fold = False
+    fold_level = 0  # track nested folds
 
     for line in content.splitlines():
         stripped_line = line.strip()
@@ -11,31 +11,32 @@ def format_kukas(content: str) -> str:
         # Remove system metadata lines
         if stripped_line.startswith("&"):
             continue
-        
+
         # Remove specific INIT macros
         if stripped_line.upper() in ["BASISTECH INI", "USER INI"]:
             continue
 
-        # Handle start of fold block
+        # Start of a FOLD block
         if stripped_line.startswith(";FOLD"):
-            # Try to extract the readable name
-            fold_label = re.match(r";FOLD\s+([^\;%]+)", stripped_line)
-            if fold_label:
-                formatted_lines.append(fold_label.group(1).strip())  # Keep only the label
-            skip_fold = True
+            # Only keep top-level FOLD label (like "PTP HOME ...")
+            if fold_level == 0:
+                match = re.match(r";FOLD\s+([^\;%]+)", stripped_line)
+                if match:
+                    formatted_lines.append(match.group(1).strip())
+            fold_level += 1
             continue
 
-        # Handle end of fold block
+        # End of a FOLD block
         if stripped_line.startswith(";ENDFOLD"):
-            skip_fold = False
+            fold_level = max(fold_level - 1, 0)
+            continue
+
+        # Skip everything inside any fold level
+        if fold_level > 0:
             continue
 
         # Remove commented PE metadata lines
         if stripped_line.startswith(";%{PE}"):
-            continue
-
-        # Skip everything inside the fold block
-        if skip_fold:
             continue
 
         # Convert keywords to uppercase
@@ -46,7 +47,6 @@ def format_kukas(content: str) -> str:
         stripped_line = re.sub(r"([=<>+\-*/]+)", r" \1 ", stripped_line)
 
         formatted_lines.append(stripped_line)
-
 
     return "\n".join(formatted_lines)
 
