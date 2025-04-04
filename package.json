@@ -2,7 +2,7 @@
   "name": "roboformatter",
   "displayName": "roboformatter",
   "description": "Formatter for a bunch of robots in the EngineeringField",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "MysticalMindset",
   "repository": "https://github.com/MysticalMindset/roboformatter",
   "engines": {
