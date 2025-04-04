@@ -10,7 +10,7 @@
   },
   "categories": [
     "Programming Languages","Other","Formatters"],
-  "activationEvents": [],
+  "activationEvents": ["onLanguage:src"],
   "main": "./out/extension.js",
   "contributes": {
     "languages": [

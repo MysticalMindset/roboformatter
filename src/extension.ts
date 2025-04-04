@@ -1,15 +1,14 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import * as vscode from 'vscode';
-// eslint-disable-next-line @typescript-eslint/naming-convention
 import * as child_process from 'child_process';
 import * as path from 'path';
-import { errorMonitor } from 'events';
 
 export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.languages.registerDocumentFormattingEditProvider('krl', {
         provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
             let edits: vscode.TextEdit[] = [];
             let fullText = document.getText();
-            let pythonScript = path.join(context.extensionPath, 'formatter', 'kukas_formatter.py');
+            let pythonScript = path.join(context.extensionPath, 'formatter', 'krl_formatter.py');
 
             try {
                 let formattedText = child_process.execSync(`python "${pythonScript}"`, {
@@ -24,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 
                 edits.push(vscode.TextEdit.replace(fullRange, formattedText));
             } catch (error) {
-                vscode.window.showErrorMessage("Error running Python formatter: " + errorMonitor.description);
+                vscode.window.showErrorMessage("Error running Python formatter: " + error);
             }
 
             return edits;
