@@ -17,10 +17,14 @@ def format_kukas(content: str) -> str:
             inside_fold_block = True
             continue  # Skip this line
 
-        if inside_fold_block:
-            if stripped_line.startswith(";ENDFOLD"):
-                inside_fold_block = False  # End of fold block
-            continue  # Skip lines inside the fold block
+        # Check for start/end of fold block
+        if stripped_line.startswith(";FOLD"):
+            inside_fold_block = True
+            continue
+        
+        if stripped_line.startswith(";ENDFOLD"):
+            inside_fold_block = False
+            continue  # <- also skip lone ;ENDFOLD lines
 
         # Convert keywords to uppercase
         keywords = r"\b(def|end|if|then|else|endif|loop|endloop|exit|decl|global|interrupt|do|when)\b"
