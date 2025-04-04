@@ -28,12 +28,11 @@
         "path": "./syntaxes/krl.tmLanguage.json"
       }
     ],
-    "formatters":[
-      {
-        "language": "kukas",
-        "provider": "./out/extension.js"
+    "configurationDefaults": {
+      "[kukas]": {
+        "editor.defaultFormatter": "MysticalMindset.roboformatter"
       }
-    ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
