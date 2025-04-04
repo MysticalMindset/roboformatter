@@ -1,12 +1,16 @@
 import sys
 import re
 
-def format_kukas(content: str) -> str:
+def format_krl(content: str) -> str:
     formatted_lines = []
     inside_fold_block = False
 
     for line in content.splitlines():
         stripped_line = line.strip()
+
+        # Remove system metadata lines
+        if stripped_line.startswith("&ACCESS") or stripped_line.startswith("&REL") or stripped_line.startswith("&PARAM"):
+            continue  # Skip these lines
 
         # Remove FOLD blocks
         if stripped_line.startswith(";FOLD"):
@@ -31,4 +35,4 @@ def format_kukas(content: str) -> str:
 
 if __name__ == "__main__":
     input_text = sys.stdin.read()
-    print(format_kukas(input_text))
+    print(format_krl(input_text))
