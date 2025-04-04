@@ -35,4 +35,4 @@ def format_kukas(content: str) -> str:
 
 if __name__ == "__main__":
     input_text = sys.stdin.read()
-    print(format_krl(input_text))
+    print(format_kukas(input_text))
