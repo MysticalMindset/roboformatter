@@ -30,7 +30,7 @@
     ],
     "formatters":[
       {
-        "language": "kuka",
+        "language": "kukas",
         "provider": "./out/extension.js"
       }
     ]
