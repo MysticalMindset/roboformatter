@@ -46,7 +46,3 @@ This project serves as a formatter for multiple robots, providing a structured w
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to customize it further based on specific details of your project!
