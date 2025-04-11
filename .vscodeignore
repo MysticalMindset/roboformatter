@@ -1,6 +1,9 @@
-.vscode/**
-.yarnrc
-vsc-extension-quickstart.md
-*.mjs
-src/*.js.map
-src/*.js
+.vscode/
+node_modules/
+src/
+dist/
+*.ts
+*.ts.map
+tsconfig.json
+.vscodeignore
+*.log
