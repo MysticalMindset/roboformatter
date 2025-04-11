@@ -11,6 +11,14 @@ const supportedLanguages: string[] = ['fanuc', 'krl'];
 type SupportedLanguage = 'fanuc' | 'krl';
 
 export function activate(context: vscode.ExtensionContext) {
+    vscode.workspace.onDidOpenTextDocument(doc => {
+        if (supportedLanguages.includes(doc.languageId)) {
+          vscode.window.showTextDocument(doc).then(() => {
+            vscode.commands.executeCommand('editor.action.formatDocument');
+          });
+        }
+      });      
+
   // Register document formatting providers for each supported language
   supportedLanguages.forEach(language => {
     const formatter = vscode.languages.registerDocumentFormattingEditProvider(language, {
@@ -40,18 +48,16 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(formatter);
   });
-}
 
-function openAndFormatFile(filePath: string, language: SupportedLanguage) {
-    const content = fs.readFileSync(filePath);
-    const decoded = iconv.decode(content, 'shift_jis');
-  
-    vscode.workspace.openTextDocument({ content: decoded, language: language }).then(doc => {
-      vscode.window.showTextDocument(doc).then(editor => {
-        // Just trigger formatting command
-        vscode.commands.executeCommand('editor.action.formatDocument');
-      });
-    });
-  }
+  context.subscriptions.push(
+    vscode.workspace.onDidOpenTextDocument(doc => {
+      if (supportedLanguages.includes(doc.languageId)) {
+        vscode.window.showTextDocument(doc).then(() => {
+          vscode.commands.executeCommand('editor.action.formatDocument');
+        });
+      }
+    })
+  );
+}
 
 export function deactivate() {}
