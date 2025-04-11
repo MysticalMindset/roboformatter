@@ -11,7 +11,7 @@
   },
   "icon": "images/roboformatter.png",
   "publisher": "MysticalMindset",
-  "repository": {"type": "github","url": "https://github.com/MysticalMindset/roboformatter"},
+  "repository": "https://github.com/MysticalMindset/roboformatter.git",
   "engines": {
     "vscode": "^1.98.0"
   },
@@ -35,14 +35,24 @@
     "languages": [
       {
         "id": "kukas",
-        "extensions": [".src",".dat"],
-        "aliases": ["KUKA Robot language"],
+        "extensions": [
+          ".src",
+          ".dat"
+        ],
+        "aliases": [
+          "KUKA Robot language"
+        ],
         "configuration": "language_config/kuka.json"
       },
       {
         "id": "Fanuc",
-        "extensions": [".LS",".ls"],
-        "aliases": ["Fanuc Robot language"],
+        "extensions": [
+          ".LS",
+          ".ls"
+        ],
+        "aliases": [
+          "Fanuc Robot language"
+        ],
         "configuration": "language_config/fanuc.json"
       }
     ],
