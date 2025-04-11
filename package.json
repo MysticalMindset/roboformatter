@@ -21,7 +21,7 @@
       },
       {
         "id": "Fanuc",
-        "extensions": [".LS",".ls", ".TP"],
+        "extensions": [".LS",".ls", ".TP", ".tp"],
         "aliases": ["Fanuc Robot language"],
         "configuration": "language_config/fanuc.json"
       }
