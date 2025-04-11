@@ -3,3 +3,4 @@
 .yarnrc
 vsc-extension-quickstart.md
 *.mjs
+./src/*.js
