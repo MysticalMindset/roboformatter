@@ -1,9 +1,7 @@
 .vscode/
 node_modules/
-src/
 dist/
 *.ts
 *.ts.map
 tsconfig.json
-.vscodeignore
 *.log
