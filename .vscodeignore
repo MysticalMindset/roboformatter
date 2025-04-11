@@ -1,5 +1,6 @@
 .vscode/**
-.gitignore
 .yarnrc
 vsc-extension-quickstart.md
 *.mjs
+src/*.js.map
+src/*.js
