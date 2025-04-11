@@ -6,6 +6,9 @@
   "author": {
     "name": "Michael McCorkell"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "icon": "images/roboformatter.png",
   "publisher": "MysticalMindset",
   "repository": {"type": "github","url": "https://github.com/MysticalMindset/roboformatter"},
