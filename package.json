@@ -2,23 +2,28 @@
   "name": "roboformatter",
   "displayName": "roboformatter",
   "description": "Formatter for a bunch of robots in the EngineeringField",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "author": {"name": "Michael McCorkell"},
+  "icon": "images/roboformatter.png",
   "publisher": "MysticalMindset",
   "repository": "https://github.com/MysticalMindset/roboformatter",
-  "engines": {
-    "vscode": "^1.98.0"
-  },
-  "categories": [
-    "Programming Languages","Other","Formatters"],
-  "activationEvents": ["onLanguage:src"],
-  "main": "./extension.js",
+  "engines": {"vscode": "^1.98.0"},
+  "categories": ["Programming Languages","Other","Formatters"],
+  "keywords": ["robot","Fanuc","KUKA","KRL"],
+  "main": "src/extension.js",
   "contributes": {
     "languages": [
       {
         "id": "kukas",
         "extensions": [".src", ".krl", ".sub"],
         "aliases": ["KUKA Robot language"],
-        "configuration": "./kuka.json"
+        "configuration": "language_config/kuka.json"
+      },
+      {
+        "id": "Fanuc",
+        "extensions": [".LS",".ls", ".TP"],
+        "aliases": ["Fanuc Robot language"],
+        "configuration": "language_config/fanuc.json"
       }
     ],
     "grammars": [
@@ -26,10 +31,18 @@
         "language": "kukas",
         "scopeName": "source.kukas",
         "path": "./syntaxes/kukas.tmLanguage.json"
+      },
+      {
+        "language": "Fanuc",
+        "scopeName": "source.fanuc",
+        "path": "./syntaxes/fanuc.tmLanguage.json"
       }
     ],
     "configurationDefaults": {
-      "[kukas]": {
+      "[kukas]":{
+        "editor.defaultFormatter": "MysticalMindset.roboformatter"
+      },
+      "[fanuc]": {
         "editor.defaultFormatter": "MysticalMindset.roboformatter"
       }
     }

@@ -1,36 +1,38 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import * as vscode from 'vscode';
-import * as child_process from 'child_process';
+import * as cp from 'child_process';
 import * as path from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
-    let disposable = vscode.languages.registerDocumentFormattingEditProvider('kukas', {
-        provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
-            let edits: vscode.TextEdit[] = [];
-            let fullText = document.getText();
-            let pythonScript = path.join(context.extensionPath, 'formatter', 'kukas_formatter.py');
+  const supportedLanguages = ['fanuc', 'krl'];
 
-            try {
-                let formattedText = child_process.execSync(`python "${pythonScript}"`, {
-                    input: fullText,
-                    encoding: 'utf-8'
-                });
+  supportedLanguages.forEach(language => {
+    const formatter = vscode.languages.registerDocumentFormattingEditProvider(language, {
+      provideDocumentFormattingEdits(document: vscode.TextDocument): vscode.TextEdit[] {
+        const fullText = document.getText();
+        const scriptFileName = `${language}_formatter.py`; // e.g., fanuc_formatter.py
+        const pythonFormatterPath = path.join(context.extensionPath, scriptFileName);
 
-                let fullRange = new vscode.Range(
-                    document.lineAt(0).range.start,
-                    document.lineAt(document.lineCount - 1).range.end
-                );
+        try {
+          const result = cp.execSync(`python "${pythonFormatterPath}"`, {
+            input: fullText,
+            encoding: 'utf-8'
+          });
 
-                edits.push(vscode.TextEdit.replace(fullRange, formattedText));
-            } catch (error) {
-                vscode.window.showErrorMessage("Error running Python formatter: " + error);
-            }
+          const fullRange = new vscode.Range(
+            document.positionAt(0),
+            document.positionAt(fullText.length)
+          );
 
-            return edits;
+          return [vscode.TextEdit.replace(fullRange, result)];
+        } catch (error) {
+          vscode.window.showErrorMessage(`Formatting failed for ${language}: ${error}`);
+          return [];
         }
+      }
     });
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(formatter);
+  });
 }
 
 export function deactivate() {}

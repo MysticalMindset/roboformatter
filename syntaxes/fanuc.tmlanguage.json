@@ -1,0 +1,35 @@
+{
+    "scopeName": "source.fanuc",
+    "patterns": [
+      {
+        "name": "keyword.control.fanuc",
+        "match": "\\b(IF|THEN|ELSE|END|FOR|TO|CALL|WAIT|JMP|LBL|R|PR|P|DO|RO|F|DI|RI|GO|GI|UO|UI)\\b"
+      },
+      {
+        "name": "entity.name.function.fanuc",
+        "match": "\\bCALL\\s+\\w+"
+      },
+      {
+        "name": "comment.line.double-slash.fanuc",
+        "match": "//.*$"
+      },
+      {
+        "name": "constant.numeric.fanuc",
+        "match": "\\b\\d+\\b"
+      },
+      {
+        "name": "string.quoted.double.fanuc",
+        "match": "\".*?\""
+      },
+      {
+        "name": "variable.parameter.fanuc",
+        "match": "#\\d+"
+      },
+      {
+        "name": "support.label.fanuc",
+        "match": "^\\s*:\\s*LBL\\s*\\[\\d+\\]"
+      }
+    ],
+    "fileTypes": ["ls", "tp"]
+  }
+  

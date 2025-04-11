@@ -1,5 +1,8 @@
 out
 dist
 node_modules
-.vscode-test/
+*.mjs
 *.vsix
+.vscode
+src/test
+src/*.js
