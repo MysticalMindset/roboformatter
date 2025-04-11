@@ -2,23 +2,45 @@
   "name": "roboformatter",
   "displayName": "roboformatter",
   "description": "Formatter for a bunch of robots in the EngineeringField",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "author": {
+    "name": "Michael McCorkell"
+  },
+  "icon": "images/roboformatter.png",
   "publisher": "MysticalMindset",
-  "repository": "https://github.com/MysticalMindset/roboformatter",
+  "repository": {"type": "github","url": "https://github.com/MysticalMindset/roboformatter"},
   "engines": {
     "vscode": "^1.98.0"
   },
   "categories": [
-    "Programming Languages","Other","Formatters"],
-  "activationEvents": ["onLanguage:src"],
-  "main": "./extension.js",
+    "Programming Languages",
+    "Other",
+    "Formatters"
+  ],
+  "keywords": [
+    "robot",
+    "Fanuc",
+    "KUKA",
+    "KRL"
+  ],
+  "main": "src/extension.js",
+  "activationEvents": [
+    "onLanguage:Fanuc",
+    "onLanguage:kukas"
+  ],
   "contributes": {
     "languages": [
       {
         "id": "kukas",
-        "extensions": [".src", ".krl", ".sub"],
+        "extensions": [".src",".dat"],
         "aliases": ["KUKA Robot language"],
-        "configuration": "./kuka.json"
+        "configuration": "language_config/kuka.json"
+      },
+      {
+        "id": "Fanuc",
+        "extensions": [".LS",".ls"],
+        "aliases": ["Fanuc Robot language"],
+        "configuration": "language_config/fanuc.json"
       }
     ],
     "grammars": [
@@ -26,10 +48,18 @@
         "language": "kukas",
         "scopeName": "source.kukas",
         "path": "./syntaxes/kukas.tmLanguage.json"
+      },
+      {
+        "language": "Fanuc",
+        "scopeName": "source.fanuc",
+        "path": "./syntaxes/fanuc.tmLanguage.json"
       }
     ],
     "configurationDefaults": {
       "[kukas]": {
+        "editor.defaultFormatter": "MysticalMindset.roboformatter"
+      },
+      "[fanuc]": {
         "editor.defaultFormatter": "MysticalMindset.roboformatter"
       }
     }
@@ -43,14 +73,17 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.98.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
+    "@types/vscode": "^1.98.0",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
-    "eslint": "^9.23.0",
-    "typescript": "^5.8.2",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.23.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.6.3"
   }
 }

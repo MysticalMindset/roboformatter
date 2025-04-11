@@ -35,31 +35,49 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = activate;
 exports.deactivate = deactivate;
-/* eslint-disable @typescript-eslint/naming-convention */
 const vscode = __importStar(require("vscode"));
-const child_process = __importStar(require("child_process"));
+const cp = __importStar(require("child_process"));
 const path = __importStar(require("path"));
+// Declare a constant for supported languages
+const supportedLanguages = ['fanuc', 'krl'];
 function activate(context) {
-    let disposable = vscode.languages.registerDocumentFormattingEditProvider('kukas', {
-        provideDocumentFormattingEdits(document) {
-            let edits = [];
-            let fullText = document.getText();
-            let pythonScript = path.join(context.extensionPath, 'formatter', 'kukas_formatter.py');
-            try {
-                let formattedText = child_process.execSync(`python "${pythonScript}"`, {
-                    input: fullText,
-                    encoding: 'utf-8'
-                });
-                let fullRange = new vscode.Range(document.lineAt(0).range.start, document.lineAt(document.lineCount - 1).range.end);
-                edits.push(vscode.TextEdit.replace(fullRange, formattedText));
-            }
-            catch (error) {
-                vscode.window.showErrorMessage("Error running Python formatter: " + error);
-            }
-            return edits;
+    vscode.workspace.onDidOpenTextDocument(doc => {
+        if (supportedLanguages.includes(doc.languageId)) {
+            vscode.window.showTextDocument(doc).then(() => {
+                vscode.commands.executeCommand('editor.action.formatDocument');
+            });
         }
     });
-    context.subscriptions.push(disposable);
+    // Register document formatting providers for each supported language
+    supportedLanguages.forEach(language => {
+        const formatter = vscode.languages.registerDocumentFormattingEditProvider(language, {
+            provideDocumentFormattingEdits(document) {
+                const fullText = document.getText();
+                const scriptFileName = `${language}_formatter.py`; // e.g., fanuc_formatter.py
+                const pythonFormatterPath = path.join(context.extensionPath, scriptFileName);
+                try {
+                    const result = cp.execSync(`python "${pythonFormatterPath}"`, {
+                        input: fullText,
+                        encoding: 'utf-8'
+                    });
+                    const fullRange = new vscode.Range(document.positionAt(0), document.positionAt(fullText.length));
+                    return [vscode.TextEdit.replace(fullRange, result)];
+                }
+                catch (error) {
+                    vscode.window.showErrorMessage(`Formatting failed for ${language}: ${error}`);
+                    return [];
+                }
+            }
+        });
+        context.subscriptions.push(formatter);
+    });
+    context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(doc => {
+        if (supportedLanguages.includes(doc.languageId)) {
+            vscode.window.showTextDocument(doc).then(() => {
+                vscode.commands.executeCommand('editor.action.formatDocument');
+            });
+        }
+    }));
 }
 function deactivate() { }
 //# sourceMappingURL=extension.js.map
