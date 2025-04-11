@@ -24,6 +24,10 @@
     "KRL"
   ],
   "main": "src/extension.js",
+  "activationEvents": [
+    "onLanguage:Fanuc",
+    "onLanguage:kukas"
+  ],
   "contributes": {
     "languages": [
       {
