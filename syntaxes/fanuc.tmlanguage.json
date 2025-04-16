@@ -1,5 +1,7 @@
 {
     "scopeName": "source.fanuc",
+    "fileTypes":["ls", "TP"],
+    "uuid": "E07EC438-7B75-4437-8AA1-DB94AABBAAAA",
     "patterns": [
         {
             "match": "(\\/PROG).*\\n",

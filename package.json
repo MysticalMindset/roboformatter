@@ -11,7 +11,10 @@
   },
   "icon": "images/roboformatter.png",
   "publisher": "MysticalMindset",
-  "repository": "https://github.com/MysticalMindset/roboformatter.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MysticalMindset/roboformatter.git"
+  },
   "engines": {
     "vscode": "^1.98.0"
   },
