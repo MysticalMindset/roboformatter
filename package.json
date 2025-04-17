@@ -10,7 +10,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "icon": "images/roboformatter.png",
-  "publisher": "MysticalMindset",
+  "publisher": "Mystical-Mindset",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MysticalMindset/roboformatter.git"
