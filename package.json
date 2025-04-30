@@ -50,6 +50,8 @@
       {
         "id": "Fanuc",
         "extensions": [
+          ".tp",
+          ".TP",
           ".TPP",
           ".tpp"
         ],

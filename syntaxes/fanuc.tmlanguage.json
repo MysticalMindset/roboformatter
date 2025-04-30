@@ -1,6 +1,6 @@
 {
     "scopeName": "source.fanuc",
-    "fileTypes":["ls", "TP"],
+    "fileTypes":["tpp", "TP", "TPP", "tp"],
     "uuid": "E07EC438-7B75-4437-8AA1-DB94AABBAAAA",
     "patterns": [
         {
