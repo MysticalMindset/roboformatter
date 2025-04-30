@@ -50,8 +50,8 @@
       {
         "id": "Fanuc",
         "extensions": [
-          ".LS",
-          ".ls"
+          ".TPP",
+          ".tpp"
         ],
         "aliases": [
           "Fanuc Robot language"
